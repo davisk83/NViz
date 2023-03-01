@@ -29,7 +29,7 @@ def print_new_authorization_url(code_challenge: str):
     Authorize your application by clicking here: https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=b0ad0284094c024d3c5d1560b239f2c9&code_challenge=NklUDX_CzS8qrMGWaDzgKs6VqrinuVFHa0xnpWPDy7_fggtM6kAar4jnTwOgzK7nPYfE9n60rsY4fhDExWzr5bf7sEvMMmSXcT2hWkCstFGIJKoaimoq5GvAEQD8NZ8g
     """
     url = f'https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id={CLIENT_ID}&code_challenge={code_challenge}'
-    print(f'Authorize your application by clicking here: {url}\n')
+    print(f"Authorize your application by clicking here: {url}\n")
 
 
 def generate_new_token(authorization_code: str, code_verifier: str) -> dict:
@@ -53,11 +53,11 @@ def generate_new_token(authorization_code: str, code_verifier: str) -> dict:
 
     token = response.json()
     response.close()
-    print('Token generated successfully!')
+    print("Token generated successfully!")
 
     with open('token.json', 'w') as file:
         json.dump(token, file, indent = 4)
-        print('Token saved in "token.json"')
+        print("Token saved in 'token.json'")
 
     return token
 
@@ -65,7 +65,7 @@ def generate_new_token(authorization_code: str, code_verifier: str) -> dict:
 def print_user_info(access_token: str):
     """Print and greet the name of the user by requesting profile information by sending a GET request.
 
-    >>> print_user_info(eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ4MWZjNmM3MGNiMjc3MDIzM2RlZTg0ZjQwOGRhZTA1N2M1ZDY0NjRlZTdjZGE1MmQ2NDgxNmZjZGZiNzVmNzAwZjUwZTg0NGEwMDZiNzlkIn0.eyJhdWQiOiJiMGFkMDI4NDA5NGMwMjRkM2M1ZDE1NjBiMjM5ZjJjOSIsImp0aSI6IjQ4MWZjNmM3MGNiMjc3MDIzM2RlZTg0ZjQwOGRhZTA1N2M1ZDY0NjRlZTdjZGE1MmQ2NDgxNmZjZGZiNzVmNzAwZjUwZTg0NGEwMDZiNzlkIiwiaWF0IjoxNjc2MTY3MzM1LCJuYmYiOjE2NzYxNjczMzUsImV4cCI6MTY3ODU4NjUzNSwic3ViIjoiMTE1MDc5ODIiLCJzY29wZXMiOltdfQ.R5IULc4dg1zbjMpSZC8VE1Le3Gfbpy-H2I9IA31cfOP-K6PHFvESZmGWZusbzEfRMqeZybcKDvDxp95fuemcd49KHMVlgvOmmGpj0IbvTp7uRNZEekSxAPg1pjRGiA0Z3wYYjC3UG5i7CirKrvIvp8SZovHleAaPXlVkRSW9O_k70C9vIeTyWMUxFjEri9byXR3b49MhnVY8esjvV2LbXyTYEXsRo4JEP-aO6chDECcQgR8BzP26miFCBHof1IWw79nXcHBVxzsbKpgS121Rg2TWLjfvO8TZfNK-ZjuBzGj3X6UouRNOu59PKbIAkzC-zDw9pMsDw1QWKh4P0M2kpA`)
+    >>> print_user_info(eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ4MWZjNmM3MGNiMjc3MDIzM2RlZTg0ZjQwOGRhZTA1N2M1ZDY0NjRlZTdjZGE1MmQ2NDgxNmZjZGZiNzVmNzAwZjUwZTg0NGEwMDZiNzlkIn0.eyJhdWQiOiJiMGFkMDI4NDA5NGMwMjRkM2M1ZDE1NjBiMjM5ZjJjOSIsImp0aSI6IjQ4MWZjNmM3MGNiMjc3MDIzM2RlZTg0ZjQwOGRhZTA1N2M1ZDY0NjRlZTdjZGE1MmQ2NDgxNmZjZGZiNzVmNzAwZjUwZTg0NGEwMDZiNzlkIiwiaWF0IjoxNjc2MTY3MzM1LCJuYmYiOjE2NzYxNjczMzUsImV4cCI6MTY3ODU4NjUzNSwic3ViIjoiMTE1MDc5ODIiLCJzY29wZXMiOltdfQ.R5IULc4dg1zbjMpSZC8VE1Le3Gfbpy-H2I9IA31cfOP-K6PHFvESZmGWZusbzEfRMqeZybcKDvDxp95fuemcd49KHMVlgvOmmGpj0IbvTp7uRNZEekSxAPg1pjRGiA0Z3wYYjC3UG5i7CirKrvIvp8SZovHleAaPXlVkRSW9O_k70C9vIeTyWMUxFjEri9byXR3b49MhnVY8esjvV2LbXyTYEXsRo4JEP-aO6chDECcQgR8BzP26miFCBHof1IWw79nXcHBVxzsbKpgS121Rg2TWLjfvO8TZfNK-ZjuBzGj3X6UouRNOu59PKbIAkzC-zDw9pMsDw1QWKh4P0M2kpA)
     >>> Greetings NumzMAL! <<<
     """
     url = 'https://api.myanimelist.net/v2/users/@me'
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     code_verifier = code_challenge = get_new_code_verifier()
     print_new_authorization_url(code_challenge)
 
-    authorization_code = input('Copy-paste the Authorization Code: ').strip()
+    authorization_code = input("Copy-paste the Authorization Code: ").strip()
     token = generate_new_token(authorization_code, code_verifier)
 
     print_user_info(token['access_token'])
