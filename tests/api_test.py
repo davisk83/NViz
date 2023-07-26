@@ -16,14 +16,14 @@ def print_top_ranks_anime(access_token: str):
     rankings = response.json()
     response.close()
     
-    # print(json.dumps(data, indent=4))
+    print(json.dumps(rankings, indent=4))
 
     print("Top 10 Best Anime Series of All Time:")
     for ranking in rankings['data']:
         print(f"-{ranking['node']['title']}")
 
     print("\nTop 100 Best Anime Series of All Time:")
-
+        
 
 if __name__ == '__main__':
     with open('token/token.json', 'r') as file:
